@@ -1,0 +1,326 @@
+{
+    "blueprint": {
+        "description": "I/O is on the green wire on the top combinator. M is the stored value. To write to the cell, set DOT to the address, and likewise use INFO for reads. Reads take 1 tick (assuming a value is already stored) and writes take 3 (until the value is available), but single-tick inputs are fine. Setting both DOT and INFO results in copying a value between cells.\nThe address is stored on the right side of the condition in the bottom and top two combinators.",
+        "icons": [
+            {
+                "signal": {
+                    "type": "virtual",
+                    "name": "signal-info"
+                },
+                "index": 1
+            },
+            {
+                "signal": {
+                    "type": "virtual",
+                    "name": "signal-S"
+                },
+                "index": 2
+            },
+            {
+                "signal": {
+                    "type": "virtual",
+                    "name": "signal-4"
+                },
+                "index": 3
+            },
+            {
+                "signal": {
+                    "type": "virtual",
+                    "name": "signal-B"
+                },
+                "index": 4
+            }
+        ],
+        "entities": [
+            {
+                "name": "decider-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -86.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "decider_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-dot"
+                        },
+                        "constant": 1,
+                        "comparator": "=",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-red"
+                        },
+                        "copy_count_from_input": false
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "green": [
+                            {
+                                "entity_id": 3,
+                                "circuit_id": 1
+                            }
+                        ]
+                    },
+                    "2": {
+                        "green": [
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 1
+            },
+            {
+                "name": "arithmetic-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -84.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "arithmetic_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-M"
+                        },
+                        "second_constant": 1,
+                        "operation": "*",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-red"
+                        }
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "red": [
+                            {
+                                "entity_id": 3,
+                                "circuit_id": 2
+                            }
+                        ]
+                    },
+                    "2": {
+                        "green": [
+                            {
+                                "entity_id": 5,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 2
+            },
+            {
+                "name": "decider-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -85.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "decider_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-dot"
+                        },
+                        "constant": 1,
+                        "comparator": "=",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-M"
+                        },
+                        "copy_count_from_input": true
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "green": [
+                            {
+                                "entity_id": 1,
+                                "circuit_id": 1
+                            },
+                            {
+                                "entity_id": 6,
+                                "circuit_id": 1
+                            }
+                        ]
+                    },
+                    "2": {
+                        "red": [
+                            {
+                                "entity_id": 2,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 3
+            },
+            {
+                "name": "decider-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -82.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "decider_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-red"
+                        },
+                        "constant": 0,
+                        "comparator": "=",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-M"
+                        },
+                        "copy_count_from_input": true
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "red": [
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 2
+                            },
+                            {
+                                "entity_id": 5,
+                                "circuit_id": 2
+                            }
+                        ],
+                        "green": [
+                            {
+                                "entity_id": 1,
+                                "circuit_id": 2
+                            },
+                            {
+                                "entity_id": 5,
+                                "circuit_id": 1
+                            }
+                        ]
+                    },
+                    "2": {
+                        "red": [
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 1
+                            },
+                            {
+                                "entity_id": 6,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 4
+            },
+            {
+                "name": "arithmetic-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -83.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "arithmetic_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-red"
+                        },
+                        "second_constant": 1,
+                        "operation": "*",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-M"
+                        }
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "green": [
+                            {
+                                "entity_id": 2,
+                                "circuit_id": 2
+                            },
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 1
+                            }
+                        ]
+                    },
+                    "2": {
+                        "red": [
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 5
+            },
+            {
+                "name": "decider-combinator",
+                "position": {
+                    "x": 93,
+                    "y": -81.5
+                },
+                "direction": 2,
+                "control_behavior": {
+                    "decider_conditions": {
+                        "first_signal": {
+                            "type": "virtual",
+                            "name": "signal-info"
+                        },
+                        "constant": 1,
+                        "comparator": "=",
+                        "output_signal": {
+                            "type": "virtual",
+                            "name": "signal-M"
+                        },
+                        "copy_count_from_input": true
+                    }
+                },
+                "connections": {
+                    "1": {
+                        "red": [
+                            {
+                                "entity_id": 4,
+                                "circuit_id": 2
+                            }
+                        ],
+                        "green": [
+                            {
+                                "entity_id": 3,
+                                "circuit_id": 1
+                            },
+                            {
+                                "entity_id": 6,
+                                "circuit_id": 2
+                            }
+                        ]
+                    },
+                    "2": {
+                        "green": [
+                            {
+                                "entity_id": 6,
+                                "circuit_id": 1
+                            }
+                        ]
+                    }
+                },
+                "entity_number": 6
+            }
+        ],
+        "item": "blueprint",
+        "label": "4 B fast memory cell",
+        "version": 281474976710656
+    }
+}

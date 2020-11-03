@@ -1,0 +1,7 @@
+import blueprint
+import json
+
+EXCHANGE_STRING = '0eNqNkU2KwzAMhe+itVviND+tr1JKcFLREdhysJ0yIfjuY6ebwnTRjZDM0/se8gajWXD2xBHUBjQ5DqCuGwR6sDblLa4zggKKaEEAa1umYLUxB6PtDEkA8R1/Qcl0E4AcKRK+XPZhHXixI/os+LQvYHYhrzgutGxzqCvZHFsBa+5lUx3bjMjBondmGPFHP8n5ol0CDpMzzmdY9Au+ZIxTMQtFIUt5eER+j0N3UHW6pZTEv4j11xFPHyJ+x5Y7O99qv6l6+wIBT/Rh59Rn2fTNpe96WXVtl9IfyK2NGA=='
+
+bp = blueprint.Blueprint.from_exchange_string(EXCHANGE_STRING)
+print(json.dumps(bp.data, indent=4))
