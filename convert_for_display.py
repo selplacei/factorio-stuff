@@ -13,14 +13,13 @@ assert HEIGHT % 4 == 0
 
 
 def main(img):
-    bp = blueprint.Blueprint.from_exchange_string(
-        '0eNptjsEKwjAQRP9lzhGspInNr4hIq4sstNvSbMVS8u828eLB28yw82Y3dP1C08yiCBv4PkpEuGyI/JS2z5muEyGAlQYYSDtkF5cuaqs8CpIBy4PeCFW6GpAoK9OXUsx6k2XoaN4P/vUNpjFykfvajjnU1hqsCLVrUkaW6fDzqcGL5lgap3NlvW2889XR1S6lD4zTRSo=')
+    bp = blueprint.Blueprint.from_exchange_string('0eNptjsEKwjAQRP9lzhGspInNr4hIq4sstNvSbMVS8u828eLB28yw82Y3dP1C08yiCBv4PkpEuGyI/JS2z5muEyGAlQYYSDtkF5cuaqs8CpIBy4PeCFW6GpAoK9OXUsx6k2XoaN4P/vUNpjFykfvajjnU1hqsCLVrUkaW6fDzqcGL5lgap3NlvW2889XR1S6lD4zTRSo=')
     bp.data['blueprint']['entities'] = []
     with open('signal_names.json') as f:
         SIGNALS = json.load(f)
 
     img = img.resize((WIDTH, HEIGHT))
-    image = img.convert('1')
+    image = img.convert('1', dither=Image.FLOYDSTEINBERG)
 
     # og_image = cv2.imread(image_path)
     # og_image = cv2.resize(og_image, dsize=(WIDTH, HEIGHT))
